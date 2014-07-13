@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<script type="text/javascript" src="../src/js/d3.min.js"></script>
+  	<script type="text/javascript">  		  		
+  		var estaciones; // a global
+		d3.json("../data/estaciones_rank.json", function(error, json) {
+  			if (error) return console.warn(error);
+  			estaciones = json;
+
+  			d3.select("body").selectAll("p")
+			    .data(d3.keys(estaciones))
+			    .enter()
+			    .append("p")
+			    .text(function(d) { return d; });
+
+			d3.select("body").selectAll("p")		
+			    .data(d3.values(estaciones))			    
+			    .append("span")
+			    .text(function(d) { return d; });
+		});  		   	
+  	</script>
+  </head>
+  <body>    
+  </body>
+</html>
