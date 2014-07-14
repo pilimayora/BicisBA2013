@@ -1,7 +1,8 @@
 <?php
 
+// DB username & password
 $user = 'pili';
-$pass = '5Gonz4lol';
+$pass = 'somepass';
 
 // Connect to database
 $link = mysql_connect('localhost:/tmp/mysql.sock', $user,  $pass);
@@ -40,7 +41,7 @@ while ($row = mysql_fetch_assoc($result)) {
 
 mysql_free_result($result);
 
-// Formulate query
+// Formulate query - ESTACIONES DE DESTINO
 $query = sprintf(
 	"SELECT COUNT(trip_id), destino_nombre 
 	 FROM recorridos_2013
@@ -66,14 +67,21 @@ while ($row = mysql_fetch_assoc($result)) {
 
 mysql_free_result($result);
 
+// Sumar resultados de origen + destino
 $estaciones_total = array();
 foreach ($estaciones_destino as $estacion => $destino_count) {
     $estaciones_total[$estacion] = $estaciones_origen[$estacion] + $destino_count;
   }
 arsort($estaciones_total);
 
+// Combinar todo y return json
+$estaciones_rank = array();
+$estaciones_rank["TOTAL"] = $estaciones_total;
+$estaciones_rank["ORIGEN"] = $estaciones_origen;
+$estaciones_rank["DESTINO"] = $estaciones_destino;
+
 header("Content-Type: application/json");
-echo json_encode($estaciones_total);
+echo json_encode($estaciones_rank);
 
 mysql_close($link);
 
