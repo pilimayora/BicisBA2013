@@ -1,0 +1,29 @@
+body {
+  font-family: "Helvetica", "Trebuchet MS", sans-serif;
+}
+
+.estaciones-rank div.bar {
+  height: 10px;
+  background-color: cadetblue;        
+  padding: 3px 5px 3px 0px;
+  margin: 3px 0px;        
+  float: left;        
+}     
+
+.estaciones-rank span.label {
+  font-size: 10px; 
+  padding: 3px 5px 3px 0px;
+  margin: 3px 0px;
+  color: #333333;
+  width: 130px;
+  float: left;
+  clear: both;          
+}
+
+.estaciones-rank span.number {
+  font-size: 10px; 
+  padding: 3px 5px 3px 0px;
+  margin: 3px 5px;
+  color: #888888;
+  float: left;  
+} 
