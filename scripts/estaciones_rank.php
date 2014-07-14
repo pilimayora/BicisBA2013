@@ -70,6 +70,7 @@ $estaciones_total = array();
 foreach ($estaciones_destino as $estacion => $destino_count) {
     $estaciones_total[$estacion] = $estaciones_origen[$estacion] + $destino_count;
   }
+arsort($estaciones_total);
 
 header("Content-Type: application/json");
 echo json_encode($estaciones_total);
